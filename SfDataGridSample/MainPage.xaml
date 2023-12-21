@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:EmployeeViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+
+    <syncfusion:SfDataGrid  ItemsSource="{Binding OrdersInfo}"
+                            AutoGenerateColumnsMode="None"
+                            ColumnWidthMode="Auto"
+                            DefaultColumnWidth="155">
+
+        <syncfusion:SfDataGrid.Columns>
+            <syncfusion:DataGridTemplateColumn MappingName="Order ID">
+                <syncfusion:DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Picker TextColor="Black"
+                                ItemsSource="{Binding  Source={x:Reference viewModel},Path=  FirstPickerItem}"
+                                SelectedIndex="{Binding Source={x:Reference viewModel},Path= Selectedindex, Mode=TwoWay}">
+                        </Picker>
+                    </DataTemplate>
+                </syncfusion:DataGridTemplateColumn.CellTemplate>
+            </syncfusion:DataGridTemplateColumn>
+
+            <syncfusion:DataGridTemplateColumn MappingName="Employee ID ">
+                <syncfusion:DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Picker TextColor="Black"
+                                ItemsSource="{Binding  Source={x:Reference viewModel},Path=  SecondPickerItem}"
+                                SelectedIndex="{Binding  Source={x:Reference viewModel},Path= Selectedindex, Mode=TwoWay}">
+                        </Picker>
+                    </DataTemplate>
+                </syncfusion:DataGridTemplateColumn.CellTemplate>
+            </syncfusion:DataGridTemplateColumn>
+            <syncfusion:DataGridTextColumn MappingName="CustomerID"
+                                           HeaderText="Customer ID" />
+        </syncfusion:SfDataGrid.Columns>
+
+    </syncfusion:SfDataGrid>
+</ContentPage>
